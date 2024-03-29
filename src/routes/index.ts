@@ -1,6 +1,4 @@
-import About from "../pages/About";
-import NotFound from "../pages/NotFound";
-import Home from "../pages/Home";
+import { About, Home, NotFound } from "../pages";
 
 export interface AppRouteType {
   to: string;
