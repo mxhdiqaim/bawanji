@@ -1,74 +1,69 @@
-import { useState } from 'react'
-import { SiConsul } from 'react-icons/si'
-import { AiOutlineGlobal } from 'react-icons/ai'
-import { BsPhoneVibrate } from 'react-icons/bs'
-import { CgMenuGridO } from 'react-icons/cg'
-import logo from '../../assets/logo.png'
+import { useEffect, useState } from "react";
+import { CgMenuGridO } from "react-icons/cg";
+import logo from "../../assets/logo.png";
+import { Box } from "@mui/material";
+
+
+const navLinks: string[] = ["Home", "About", "Offers", "Seats", "Destination"];
 
 const Navbar = () => {
-
   // remove navBar on small screens
-  const [active, setActive] = useState('navBarMenu');
-  const showNavBar = () => {
-    setActive('navBarMenu showNavBar');
-  }
+  const [activeClassName, setActiveClassName] = useState("navBarMenu");
+  const [toggleMenu, setToggleMenu] = useState<boolean>(false);
+
   const removeNavBar = () => {
-    setActive('navBarMenu');
-  }
+    setActiveClassName("navBarMenu");
+  };
 
   // add bgcolor on second nabVar
-  const [noBg, addBg] = useState('navBarTwo');
+  const [navBg, setNavBg] = useState("navBarTwo");
+
   const addBgColor = () => {
     if (window.scrollY >= 10) {
-      addBg('navBarTwo navbar_With_Bg');
+      setNavBg("navBarTwo navbar_With_Bg");
     } else {
-      addBg('navBarTwo')
+      setNavBg("navBarTwo");
     }
-  }
-  window.addEventListener('scroll', addBgColor)
+  };
+  window.addEventListener("scroll", addBgColor);
+
+  useEffect(() => {
+    if (toggleMenu) {
+      setActiveClassName("navBarMenu showNavBar");
+    } else {
+      setActiveClassName("navBarMenu");
+    }
+  }, [toggleMenu]);
 
   return (
-    <div className='navBar flex'>
+    <div className="navBar flex">
       <div className="navBarOne flex">
-        <div>
-          <SiConsul className='icon' />
-        </div>
-
-        <div className="none flex">
-          <li className='flex'><BsPhoneVibrate className='icon' />Support</li>
-          <li className='flex'><AiOutlineGlobal className='icon' />Languages</li>
-        </div>
-
         <div className="atb flex">
-          <span>Sign In</span>
-          <span>Sign Out</span>
+          <Box component="span" sx={{ color: "#c78437", fontSize: "1rem" }}>
+            Experimental
+          </Box>
         </div>
-
       </div>
 
-      <div className={noBg}>
+      <div className={navBg}>
         <div className="logoDiv">
-          <img src={logo} className='logo' alt="logo" />
+          <img src={logo} className="logo" alt="logo" />
         </div>
-        <div className={active}>
+        <div className={activeClassName}>
           <ul className="menu flex">
-            <li onClick={removeNavBar} className="listItem">Home</li>
-            <li onClick={removeNavBar} className="listItem">About</li>
-            <li onClick={removeNavBar} className="listItem">Offers</li>
-            <li onClick={removeNavBar} className="listItem">Seats</li>
-            <li onClick={removeNavBar} className="listItem">Destinations</li>
+            {navLinks.map((navLink: string, index: number) => (
+              <li onClick={removeNavBar} className="listItem" key={index}>
+                {navLink}
+              </li>
+            ))}
           </ul>
-          <button className='btn flex btnOne'>Contact</button>
-
-
         </div>
-        <button className='btn flex btnTwo'>Contact</button>
-        <div onClick={showNavBar} className="toggleIcon">
-          <CgMenuGridO className='icon' />
+        <div onClick={() => setToggleMenu(!toggleMenu)} className="toggleIcon">
+          <CgMenuGridO className="icon" />
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
