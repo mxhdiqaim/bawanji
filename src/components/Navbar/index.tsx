@@ -1,10 +1,39 @@
 import { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 import { CgMenuGridO } from "react-icons/cg";
 import logo from "../../assets/logo.png";
 import { Box } from "@mui/material";
 
+interface NavLinksT {
+  title: string,
+  slug: string,
+}
 
-const navLinks: string[] = ["Home", "About", "Offers", "Seats", "Destination"];
+
+const navLinks: NavLinksT[] = [
+  {
+    title: "",
+    slug: "home",
+  },
+  {
+    title: "About",
+    slug: "about",
+  },
+  {
+    title: "Offers",
+    slug: "offers"
+  },
+  {
+    title: "Seats",
+    slug: "seats",
+  },
+  {
+    title: "Destination",
+    slug: "destination"
+  },
+];
+
+// "Home", "About", "Offers", "Seats", "Destination"
 
 const Navbar = () => {
   // remove navBar on small screens
@@ -51,9 +80,11 @@ const Navbar = () => {
         </div>
         <div className={activeClassName}>
           <ul className="menu flex">
-            {navLinks.map((navLink: string, index: number) => (
-              <li onClick={removeNavBar} className="listItem" key={index}>
-                {navLink}
+            {navLinks.map((navLink: NavLinksT, index: number) => (
+              <li onClick={removeNavBar} key={index}>
+                <Link to={`/${navLink.slug}`} className="listItem">
+                  {navLink.title}
+                </Link>
               </li>
             ))}
           </ul>
