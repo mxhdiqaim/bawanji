@@ -1,9 +1,9 @@
-$primaryColor: hsl(225, 50%, 48%);
-$secondaryColor: hsl(180, 17%, 95%);
-$colorOne: hsl(15, 74%, 70%);
-$colorTwo: hsl(68, 85%, 35%);
-$hoverColor: hsl(225, 56%, 59%);
-$whiteColor: hsl(0, 0%, 100%);
+$primaryColor: #3d5cb8;
+$secondaryColor: #f0f4f4;
+$colorOne: #eb967a;
+$colorTwo: #91a50d;
+$hoverColor: #5c79d1;
+$whiteColor: #ffffff;
 $blackColor: hsl(0, 0%, 12%);
 $textColor: hsl(240, 1%, 48%);
 $borderColor: hsl(0, 0%, 83%);
@@ -991,7 +991,7 @@ h2 {
   .navBar {
     .navBarOne,
     .navBarTwo {
-      padding: 1.5rem 5rem;
+      padding: 1rem 5rem;
     }
     .navbar_With_Bg {
       padding: 0 5rem;
