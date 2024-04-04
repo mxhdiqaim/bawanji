@@ -13,6 +13,7 @@ export type Authenticate = {
   userData: FlightProviderT;
   setLoading: FunctionT;
   removeLoading: FunctionT;
+  getFlight: () => void;
 };
 
-export const FlightContext = createContext<Authenticate>({} as Authenticate);
+export const flightContext = createContext<Authenticate>({} as Authenticate);

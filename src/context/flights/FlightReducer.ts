@@ -1,4 +1,4 @@
-import { ErrorT, FlightProviderT } from "./FlightContext";
+import { ErrorT, FlightProviderT } from "./flightContext";
 
 
 type IUserAction =
